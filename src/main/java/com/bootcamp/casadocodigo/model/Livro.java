@@ -1,5 +1,6 @@
 package com.bootcamp.casadocodigo.model;
 
+import com.bootcamp.casadocodigo.dto.LivroParaListagemResponse;
 import com.bootcamp.casadocodigo.dto.NovoLivroResponse;
 import org.hibernate.validator.constraints.Length;
 
@@ -54,6 +55,9 @@ public class Livro {
     @ManyToOne
     private Autor autor;
 
+    @Deprecated
+    public Livro() {}
+
     public Livro(
             String titulo,
             String resumo,
@@ -88,5 +92,9 @@ public class Livro {
                 this.categoria.toDto(),
                 this.autor.toDto()
         );
+    }
+
+    public LivroParaListagemResponse toDtoListagem() {
+        return new LivroParaListagemResponse(this.id, this.titulo);
     }
 }

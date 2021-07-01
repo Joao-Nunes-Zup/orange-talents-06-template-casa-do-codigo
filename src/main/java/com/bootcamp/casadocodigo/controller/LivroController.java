@@ -1,6 +1,6 @@
 package com.bootcamp.casadocodigo.controller;
 
-import com.bootcamp.casadocodigo.dto.ErroDeFormularioResponse;
+import com.bootcamp.casadocodigo.dto.LivroParaListagemResponse;
 import com.bootcamp.casadocodigo.dto.NovoLivroRequest;
 import com.bootcamp.casadocodigo.dto.NovoLivroResponse;
 import com.bootcamp.casadocodigo.model.Autor;
@@ -11,14 +11,13 @@ import com.bootcamp.casadocodigo.repository.CategoriaRepository;
 import com.bootcamp.casadocodigo.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/livros")
@@ -32,6 +31,15 @@ public class LivroController {
 
     @Autowired
     LivroRepository livroRepository;
+
+    @GetMapping
+    public List<LivroParaListagemResponse> listar() {
+        List<Livro> livros = livroRepository.findAll();
+
+        return livros.stream()
+                .map(Livro::toDtoListagem)
+                .collect(Collectors.toList());
+    }
 
     @PostMapping
     @Transactional
