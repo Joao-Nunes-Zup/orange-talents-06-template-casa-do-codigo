@@ -1,6 +1,7 @@
 package com.bootcamp.casadocodigo.dto;
 
 import com.bootcamp.casadocodigo.model.Categoria;
+import com.bootcamp.casadocodigo.validator.Unique;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ public class NovaCategoriaRequest {
 
     @NotNull
     @NotBlank
+    @Unique(field = "nome", theClass = Categoria.class)
     private String nome;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)

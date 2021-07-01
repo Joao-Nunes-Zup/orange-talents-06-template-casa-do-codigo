@@ -1,6 +1,7 @@
 package com.bootcamp.casadocodigo.dto;
 
 import com.bootcamp.casadocodigo.model.Autor;
+import com.bootcamp.casadocodigo.validator.Unique;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -16,6 +17,7 @@ public class NovoAutorRequest {
     @NotNull
     @NotBlank
     @Email
+    @Unique(field = "email", theClass = Autor.class)
     private String email;
 
     @NotNull
