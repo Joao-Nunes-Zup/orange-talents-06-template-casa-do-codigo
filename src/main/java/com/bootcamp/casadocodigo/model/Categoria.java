@@ -15,7 +15,6 @@ public class Categoria {
     private Long id;
 
     @Column(nullable = false)
-    @NotNull
     @NotBlank
     private String nome;
 

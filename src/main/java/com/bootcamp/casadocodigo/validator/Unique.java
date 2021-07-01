@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = UniqueValidator.class)
 public @interface Unique {
 
-    String message() default "{com.bootcamp.casadocodigo.Unique.message}";
+    String message() default "{com.bootcamp.casadocodigo.Unique}";
 
     Class<?>[] groups() default {};
 

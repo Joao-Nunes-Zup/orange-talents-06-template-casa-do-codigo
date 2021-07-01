@@ -1,7 +1,5 @@
 package com.bootcamp.casadocodigo.dto;
 
-import com.bootcamp.casadocodigo.model.Autor;
-
 import java.time.LocalDateTime;
 
 public class NovoAutorResponse {

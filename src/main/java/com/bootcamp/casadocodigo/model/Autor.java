@@ -19,18 +19,15 @@ public class Autor {
     private Long id;
 
     @Column(nullable=false)
-    @NotNull
     @NotBlank
     private String nome;
 
     @Column(nullable=false)
-    @NotNull
     @NotBlank
     @Email
     private String email;
 
     @Column(nullable=false, length=400)
-    @NotNull
     @NotBlank
     @Length(max = 400)
     private String descricao;
@@ -42,10 +39,10 @@ public class Autor {
     @Deprecated
     public Autor() {}
 
-    public Autor(NovoAutorRequest autorRequest) {
-        this.nome = autorRequest.getNome();
-        this.email = autorRequest.getEmail();
-        this.descricao = autorRequest.getDescricao();
+    public Autor(String nome, String email, String descricao) {
+        this.nome = nome;
+        this.email = email;
+        this.descricao = descricao;
     }
 
     public NovoAutorResponse toDto() {

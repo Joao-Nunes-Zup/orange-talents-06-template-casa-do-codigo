@@ -5,22 +5,16 @@ import com.bootcamp.casadocodigo.validator.Unique;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class NovaCategoriaRequest {
 
-    @NotNull
-    @NotBlank
-    @Unique(field = "nome", theClass = Categoria.class)
+    @NotBlank(message = "Campo obrigatório")
+    @Unique(field = "nome", theClass = Categoria.class, message = "Já existe uma categoria com este nome")
     private String nome;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public NovaCategoriaRequest(String nome) {
         this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Categoria toEntity() {

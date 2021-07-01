@@ -2,27 +2,23 @@ package com.bootcamp.casadocodigo.dto;
 
 import com.bootcamp.casadocodigo.model.Autor;
 import com.bootcamp.casadocodigo.validator.Unique;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class NovoAutorRequest {
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "Campo obrigatório")
     private String nome;
 
-    @NotNull
-    @NotBlank
-    @Email
-    @Unique(field = "email", theClass = Autor.class)
+    @NotBlank(message = "Campo obrigatório")
+    @Email(message = "Formato inválido")
+    @Unique(field = "email", theClass = Autor.class, message = "E-mail já em uso")
     private String email;
 
-    @NotNull
-    @NotBlank
-    @Length(max = 400, message= "Número máximo de caracteres permitidos: 400")
+    @NotBlank(message = "Campo obrigatório")
+    @Size(max = 400, message= "Número máximo de caracteres permitidos: 400")
     private String descricao;
 
     public NovoAutorRequest(String nome, String email, String descricao) {
@@ -31,19 +27,7 @@ public class NovoAutorRequest {
         this.descricao = descricao;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public Autor toEntity() {
-        return new Autor(this);
+        return new Autor(this.nome, this.email, this.descricao);
     }
 }
