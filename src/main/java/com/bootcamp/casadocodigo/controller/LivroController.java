@@ -41,6 +41,15 @@ public class LivroController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> detalhar(@PathVariable Long id) {
+        Optional<Livro> livro = livroRepository.findById(id);
+
+        if (livro.isEmpty()) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(livro.get().toDtoDetalhes());
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity<NovoLivroResponse> criar(@RequestBody @Valid NovoLivroRequest livroRequest) {

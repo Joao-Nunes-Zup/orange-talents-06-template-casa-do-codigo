@@ -1,8 +1,10 @@
 package com.bootcamp.casadocodigo.model;
 
+import com.bootcamp.casadocodigo.dto.DetalhesDoLivroResponse;
 import com.bootcamp.casadocodigo.dto.LivroParaListagemResponse;
 import com.bootcamp.casadocodigo.dto.NovoLivroResponse;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.http.ResponseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -96,5 +98,18 @@ public class Livro {
 
     public LivroParaListagemResponse toDtoListagem() {
         return new LivroParaListagemResponse(this.id, this.titulo);
+    }
+
+    public DetalhesDoLivroResponse toDtoDetalhes() {
+        return new DetalhesDoLivroResponse(this.titulo,
+                this.resumo,
+                this.sumario,
+                this.preco,
+                this.numeroDePaginas,
+                this.isbn,
+                this.dataDePublicacao,
+                this.categoria.toDto(),
+                this.autor.toDto()
+        );
     }
 }
