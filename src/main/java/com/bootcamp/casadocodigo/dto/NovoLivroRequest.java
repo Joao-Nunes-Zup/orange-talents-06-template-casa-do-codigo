@@ -3,6 +3,8 @@ package com.bootcamp.casadocodigo.dto;
 import com.bootcamp.casadocodigo.model.Autor;
 import com.bootcamp.casadocodigo.model.Categoria;
 import com.bootcamp.casadocodigo.model.Livro;
+import com.bootcamp.casadocodigo.model.Pais;
+import com.bootcamp.casadocodigo.validator.ExistentId;
 import com.bootcamp.casadocodigo.validator.Unique;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -40,9 +42,11 @@ public class NovoLivroRequest {
     private LocalDate dataDePublicacao;
 
     @NotNull(message = "Campo obrigatório")
+    @ExistentId(field = "id", theClass = Categoria.class, message = "Categoria não registrada")
     private Long categoriaId;
 
     @NotNull(message = "Campo obrigatório")
+    @ExistentId(field = "id", theClass = Autor.class, message = "Autor não registrado")
     private Long autorId;
 
     public NovoLivroRequest(
