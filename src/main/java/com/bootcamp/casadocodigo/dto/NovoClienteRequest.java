@@ -91,25 +91,7 @@ public class NovoClienteRequest {
     public Cliente toEntity(PaisRepository paisRepository, EstadoRepository estadoRepository) {
         Optional<Pais> pais = paisRepository.findById(this.paisId);
 
-        if (estadoId != null) {
-            Optional<Estado> estado = estadoRepository.findById(this.estadoId);
-
-            return new Cliente(
-                    this.email,
-                    this.nome,
-                    this.sobrenome,
-                    this.cpfOuCnpj,
-                    this.endereco,
-                    this.complemento,
-                    this.cidade,
-                    pais.get(),
-                    estado.get(),
-                    this.telefone,
-                    this.cep
-            );
-        }
-
-        return new Cliente(
+        Cliente cliente = new Cliente(
                 this.email,
                 this.nome,
                 this.sobrenome,
@@ -118,9 +100,15 @@ public class NovoClienteRequest {
                 this.complemento,
                 this.cidade,
                 pais.get(),
-                null,
                 this.telefone,
                 this.cep
         );
+
+        if (estadoId != null) {
+            Optional<Estado> estado = estadoRepository.findById(this.estadoId);
+            cliente.setEstado(estado.get());
+        }
+
+        return cliente;
     }
 }

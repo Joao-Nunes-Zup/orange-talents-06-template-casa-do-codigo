@@ -70,7 +70,6 @@ public class Cliente {
             String complemento,
             String cidade,
             Pais pais,
-            Estado estado,
             String telefone,
             String cep
     ) {
@@ -82,7 +81,6 @@ public class Cliente {
         this.complemento = complemento;
         this.cidade = cidade;
         this.pais = pais;
-        this.estado = estado;
         this.telefone = telefone;
         this.cep = cep;
     }
@@ -90,5 +88,9 @@ public class Cliente {
     public NovoClienteResponse toDto() {
 
         return new NovoClienteResponse(this.id);
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }
