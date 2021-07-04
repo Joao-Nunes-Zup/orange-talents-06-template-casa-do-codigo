@@ -32,8 +32,6 @@ public class ExistentIdValidator implements ConstraintValidator<ExistentId, Obje
         query.setParameter("pValue", obj);
         List<?> list = query.getResultList();
 
-        System.out.println(list.size());
-
         Assert.state(
                 list.size() <= 1,
                 "múltiplos atributos, do tipo " + field + ", da classe, " + theClass.getName() + ", foram encontrados"

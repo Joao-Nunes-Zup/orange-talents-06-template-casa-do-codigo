@@ -31,6 +31,6 @@ public class Estado {
     }
 
     public NovoEstadoResponse toDto() {
-        return new NovoEstadoResponse(this.nome, this.pais);
+        return new NovoEstadoResponse(this.id, this.nome, this.pais);
     }
 }

@@ -4,6 +4,7 @@ import com.bootcamp.casadocodigo.dto.NovoPaisResponse;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "paises")
@@ -16,6 +17,9 @@ public class Pais {
     @Column(nullable = false, unique = true)
     @NotBlank
     private String nome;
+
+    @OneToMany(mappedBy = "pais")
+    private List<Estado> estados;
 
     @Deprecated
     public Pais() {}

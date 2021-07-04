@@ -14,38 +14,38 @@ import java.time.LocalDate;
 
 public class NovoLivroRequest {
 
-    @NotBlank(message = "Campo obrigatório")
+    @NotBlank
     @Unique(field = "titulo", theClass = Livro.class, message = "Título já em uso")
     private String titulo;
 
-    @NotBlank(message = "Campo obrigatório")
+    @NotBlank
     @Size(max = 500, message = "=O número de caracteres máximo: 500")
     private String resumo;
 
     private String sumario;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotNull
     @Min(value = 20, message = "O valor mínimo é de: R$20,00")
     private BigDecimal preco;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotNull
     @Min(value = 100, message = "O menor número de páginas permitido é de: 100")
     private Integer numeroDePaginas;
 
-    @NotBlank(message = "Campo obrigatório")
+    @NotBlank
     @Unique(field = "isbn", theClass = Livro.class, message = "Já existe um livro com o mesmo Isbn")
     private String isbn;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotNull
     @Future(message = "A data precisa ser no futuro")
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataDePublicacao;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotNull
     @ExistentId(field = "id", theClass = Categoria.class, message = "Categoria não registrada")
     private Long categoriaId;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotNull
     @ExistentId(field = "id", theClass = Autor.class, message = "Autor não registrado")
     private Long autorId;
 
